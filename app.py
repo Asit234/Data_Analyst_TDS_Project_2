@@ -702,6 +702,15 @@ async def favicon():
         return FileResponse(path, media_type="image/x-icon")
     return Response(content=_FAVICON_FALLBACK_PNG, media_type="image/png")
 
+@app.get("/health", include_in_schema=False)
+async def health_check():
+    """Health check endpoint for Railway."""
+    return JSONResponse({
+        "status": "healthy",
+        "message": "Server is running",
+        "timestamp": pd.Timestamp.now().isoformat()
+    })
+
 @app.get("/api", include_in_schema=False)
 async def analyze_get_info():
     """Health/info endpoint. Use POST /api for actual analysis."""
