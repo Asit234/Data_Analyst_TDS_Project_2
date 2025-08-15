@@ -61,6 +61,11 @@ async def serve_frontend():
     except FileNotFoundError:
         return HTMLResponse(content="<h1>Frontend not found</h1><p>Please ensure index.html is in the same directory as app.py</p>", status_code=404)
 
+@app.get("/ping", include_in_schema=False)
+async def ping():
+    """Simple ping endpoint for Railway health checks."""
+    return JSONResponse({"status": "ok", "message": "pong"})
+
 
 def parse_keys_and_types(raw_questions: str):
     """

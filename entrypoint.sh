@@ -18,4 +18,5 @@ if [ ! -f "index.html" ]; then
 fi
 
 echo "Starting uvicorn server..."
-exec uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000} --log-level info
+echo "Command: uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000} --log-level info"
+exec uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000} --log-level info --access-log
